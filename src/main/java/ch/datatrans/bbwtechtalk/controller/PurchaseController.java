@@ -1,11 +1,12 @@
 package ch.datatrans.bbwtechtalk.controller;
 
-import ch.datatrans.bbwtechtalk.controller.Basket;
 import ch.datatrans.bbwtechtalk.service.PurchaseService;
+import ch.datatrans.bbwtechtalk.util.Payment;
+import ch.datatrans.bbwtechtalk.util.WebhookPayloadParser;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,8 +51,23 @@ public class PurchaseController {
         return "error";
     }
 
+    // https://738d1494.ngrok.io/payment/listener
     @PostMapping("/listener")
-    public void paymentSuccessfulListener(@Valid Basket basket) {
+    public void paymentSuccessfulListener(HttpEntity<String> httpEntity) {
+
+        try {
+            String payload = httpEntity.getBody();
+
+            if(WebhookPayloadParser.paymentWasSuccessful(payload)) {
+                Payment paymentDetails = WebhookPayloadParser.getPaymentDetails(payload);
+                purchaseService.updatePurchase(paymentDetails.getRefno(),
+                        paymentDetails.getTransactionId(),
+                        paymentDetails.getPaymentMethod());
+
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to parse Webhook payload. Aborting.");
+        }
 
     }
 

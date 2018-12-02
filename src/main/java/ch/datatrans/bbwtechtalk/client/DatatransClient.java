@@ -31,7 +31,7 @@ public class DatatransClient {
 
     public String initTransaction(String refno, Long amount, String currency) {
 
-        var initTransactionRequest = new InitTransactionRequest("asdf", amount, currency);
+        var initTransactionRequest = new InitTransactionRequest(refno, amount, currency);
         printAsJson(initTransactionRequest);
 
         InitTransactionResponse initTransactionResponse =

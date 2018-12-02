@@ -32,25 +32,34 @@ public class PurchaseService {
     }
 
     public String initializePurchase(Basket basket) {
-        String refno = RandomStringUtils.random(20);
+        String refno = RandomStringUtils.randomAlphanumeric(20);
 
         // fetch the articles prices from the DB
         Article article = articleRepository.findById(basket.getArticleId()).orElseThrow(RuntimeException::new);
+        BigDecimal price = article.getPrice();
 
         // Business logic to calculate the amount
-        long finalAmount = article.getPrice().longValue() * basket.getQuantity();
+        long priceCurrencySmallestUnit = price.scaleByPowerOfTen(price.scale()).longValue() * basket.getQuantity();
 
         // initialize transaction with Datatrans
-        String paymentId = datatransClient.initTransaction(refno, finalAmount, "CHF");
+        String paymentId = datatransClient.initTransaction(refno, priceCurrencySmallestUnit, "CHF");
 
         // crate a new purchase in DB
         Purchase purchase = new Purchase();
         purchase.setArticles(List.of(article));
-        purchase.setAmount(new BigDecimal(finalAmount));
+        purchase.setAmount(new BigDecimal(price.longValue() * basket.getQuantity()));
         purchase.setRefno(refno);
         purchase.setState(PurchaseState.INITIALIZED);
+        purchaseRepository.save(purchase);
 
         return paymentId;
+    }
 
+    public void updatePurchase(String refno, String transactionId, String paymentMethod) {
+        Purchase purchase = purchaseRepository.findByRefno(refno);
+        purchase.setState(PurchaseState.PAYED);
+        purchase.setTransactionId(transactionId);
+        purchase.setPaymentMethod(paymentMethod);
+        purchaseRepository.save(purchase);
     }
 }

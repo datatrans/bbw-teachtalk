@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * @author dominik.mengelt@gmail.com
@@ -28,6 +27,7 @@ public class Purchase {
     private static final String REFNO = "refno";
     private static final String TRANSACTION_ID = "transactionId";
     private static final String AMOUNT = "amount";
+    private static final String PAYMENT_METHOD = "paymentMethod";
     private static final String STATUS = "status";
 
     @Id
@@ -39,10 +39,13 @@ public class Purchase {
     private String refno;
 
     @Column(name = TRANSACTION_ID)
-    private Long transactionId; // Datatrans transactionId
+    private String transactionId; // Datatrans transactionId
 
     @Column(name = AMOUNT)
     private BigDecimal amount;
+
+    @Column(name = PAYMENT_METHOD)
+    private String paymentMethod;
 
     @Enumerated(EnumType.STRING)
     @Column(name = STATUS)
@@ -71,11 +74,11 @@ public class Purchase {
         this.refno = refno;
     }
 
-    public Long getTransactionId() {
+    public String getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(Long transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -85,6 +88,14 @@ public class Purchase {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public List<Article> getArticles() {
