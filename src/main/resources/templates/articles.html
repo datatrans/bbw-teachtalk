@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BBW Sticker Shop</title>
+
+    <link href="../static/css/stickershop.css"
+          th:href="@{/css/stickershop.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="columns">
+        <div class="column col-12 col-mx-auto"><h3 style="padding-top: 1rem">BBW Sticker Shop</h3></div>
+
+        <div class="column col-12" th:if="${#lists.isEmpty(articles)}">No articles so far!</div>
+
+        <div class="column col-6 col-xs-12" th:each="article : ${articles}" th:unless="${#lists.isEmpty(articles)}">
+            <div class="card" style="margin: 1rem">
+                <div class="card-header">
+                    <div class="card-title h5"><span th:text="${article.name}"></span></div>
+                    <div class="card-subtitle text-gray">Article number: <span class="user" th:text="${article.id}"></span></div>
+                </div>
+                <div class="card-image" style="margin-left: 1rem;"><img style=" border: 1px solid black;box-shadow: 2px 2px #888888;" class="img-responsive" th:src="${'/img/' + article.logo}" src="../static/img/bbw_circle.jpg" width="200px"></div>
+                <div class="card-body"><span class="user" th:text="${article.description}"></span></div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" href="#cards">Buy for <span class="user" th:text="${article.price}"> CHF</span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
