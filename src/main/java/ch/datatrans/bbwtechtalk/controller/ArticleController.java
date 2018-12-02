@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk;
+package ch.datatrans.bbwtechtalk.controller;
 
 import ch.datatrans.bbwtechtalk.domain.Article;
 import ch.datatrans.bbwtechtalk.service.ArticleService;
@@ -13,13 +13,13 @@ import java.util.List;
  * @author dominik.mengelt@gmail.com
  */
 @Controller
-public class StickerShopController {
+public class ArticleController {
 
     private final ArticleService articleService;
     private final PurchaseService purchaseService;
 
-    public StickerShopController(ArticleService articleService,
-                                 PurchaseService purchaseService) {
+    public ArticleController(ArticleService articleService,
+                             PurchaseService purchaseService) {
         this.articleService = articleService;
         this.purchaseService = purchaseService;
     }
@@ -34,6 +34,5 @@ public class StickerShopController {
     public List<Article> getArticles() {
         return articleService.getArticles();
     }
-
 
 }

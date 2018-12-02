@@ -2,6 +2,8 @@ package ch.datatrans.bbwtechtalk.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -22,9 +25,10 @@ import java.util.UUID;
 public class Purchase {
 
     private static final String ID = "id";
-    private static final String REFNO = "name";
+    private static final String REFNO = "refno";
     private static final String TRANSACTION_ID = "transactionId";
     private static final String AMOUNT = "amount";
+    private static final String STATUS = "status";
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -32,13 +36,17 @@ public class Purchase {
     private Long id;
 
     @Column(name = REFNO)
-    private UUID refno;
+    private String refno;
 
     @Column(name = TRANSACTION_ID)
     private Long transactionId; // Datatrans transactionId
 
     @Column(name = AMOUNT)
     private BigDecimal amount;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = STATUS)
+    private PurchaseState state;
 
     @ManyToMany
     @JoinTable(
@@ -55,11 +63,11 @@ public class Purchase {
         this.id = id;
     }
 
-    public UUID getRefno() {
+    public String getRefno() {
         return refno;
     }
 
-    public void setRefno(UUID refno) {
+    public void setRefno(String refno) {
         this.refno = refno;
     }
 
@@ -85,5 +93,29 @@ public class Purchase {
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+    }
+
+    public PurchaseState getState() {
+        return state;
+    }
+
+    public void setState(PurchaseState state) {
+        this.state = state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Purchase purchase = (Purchase) o;
+        return Objects.equals(id, purchase.id) &&
+                Objects.equals(refno, purchase.refno) &&
+                Objects.equals(transactionId, purchase.transactionId) &&
+                Objects.equals(amount, purchase.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, refno, transactionId, amount);
     }
 }

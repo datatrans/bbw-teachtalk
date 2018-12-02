@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "article")
@@ -90,5 +91,22 @@ public class Article {
 
     public void setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Article article = (Article) o;
+        return Objects.equals(id, article.id) &&
+                Objects.equals(name, article.name) &&
+                Objects.equals(description, article.description) &&
+                Objects.equals(logo, article.logo) &&
+                Objects.equals(price, article.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, logo, price);
     }
 }

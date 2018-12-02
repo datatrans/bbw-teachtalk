@@ -26,10 +26,14 @@
                     <div class="card-title h5"><span th:text="${article.name}"></span></div>
                     <div class="card-subtitle text-gray">Article number: <span class="user" th:text="${article.id}"></span></div>
                 </div>
-                <div class="card-image" style="margin-left: 1rem;"><img style=" border: 1px solid black;box-shadow: 2px 2px #888888;" class="img-responsive" th:src="${'/img/' + article.logo}" src="../static/img/bbw_circle.jpg" width="200px"></div>
+                <div class="card-image" style="margin-left: 1rem;"><img class="img-responsive" th:src="${'/img/' + article.logo}" src="../static/img/bbw_circle.jpg" width="200px"></div>
                 <div class="card-body"><span class="user" th:text="${article.description}"></span></div>
                 <div class="card-footer">
-                    <a class="btn btn-primary" href="#cards">Buy for <span class="user" th:text="${article.price}"> CHF</span></a>
+                    <form action="/payment" method="post">
+                        <input name="articleId" type="hidden" th:value="${article.id}"/>
+                        <input name="quantity" type="hidden" value="1" />
+                        <button class="btn btn-primary" th:text="${'Buy for CHF ' + article.price}"></button>
+                    </form>
                 </div>
             </div>
         </div>
