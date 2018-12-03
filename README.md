@@ -27,4 +27,4 @@ like [ngrok](https://ngrok.com) to make this endpoint reachable from the interne
 3. Open http://localhost:8080 with your favourite browser
 
 ## Deployment
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/datatrans/bbw-techtalk)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/datatrans/bbw-techtalk/tree/master)
