@@ -3,6 +3,7 @@
   "description": "A Stickershop to show a sample Datatrans integration",
   "repository": "https://github.com/datatrans/bbw-techtalk",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Berufsbildungsschule_Winterthur_logo.svg",
+  "success_url": "/",
   "env": {
     "datatransUsername":{
       "description": "Your Datatrans merchantId"
