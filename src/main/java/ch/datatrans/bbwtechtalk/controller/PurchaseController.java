@@ -51,7 +51,6 @@ public class PurchaseController {
         return "error";
     }
 
-    // https://738d1494.ngrok.io/payment/listener
     @PostMapping("/listener")
     public void paymentSuccessfulListener(HttpEntity<String> httpEntity) {
 
