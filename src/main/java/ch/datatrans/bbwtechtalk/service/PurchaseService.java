@@ -47,8 +47,10 @@ public class PurchaseService {
         // crate a new purchase in DB
         Purchase purchase = new Purchase();
         purchase.setArticles(List.of(article));
-        purchase.setAmount(new BigDecimal(price.longValue() * basket.getQuantity()));
+        purchase.setAmount(price.multiply(new BigDecimal(basket.getQuantity())));
         purchase.setRefno(refno);
+
+        // set the state to INITIALIZED
         purchase.setState(PurchaseState.INITIALIZED);
         purchaseRepository.save(purchase);
 
@@ -57,6 +59,8 @@ public class PurchaseService {
 
     public void updatePurchase(String refno, String transactionId, String paymentMethod) {
         Purchase purchase = purchaseRepository.findByRefno(refno);
+
+        // the user payed. set the state to PAYED
         purchase.setState(PurchaseState.PAYED);
         purchase.setTransactionId(transactionId);
         purchase.setPaymentMethod(paymentMethod);

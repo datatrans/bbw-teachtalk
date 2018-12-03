@@ -18,7 +18,6 @@ public class BbwTechtalkApplication {
 
 	@Bean
 	public RestTemplate rest(RestTemplateBuilder restTemplateBuilder) {
-
 		// For the sake of the demo, grabbing the credentials from system properties
 		String username = System.getProperty("datatransUsername");
 		String password = System.getProperty("datatransPassword");
@@ -26,9 +25,7 @@ public class BbwTechtalkApplication {
 		return restTemplateBuilder.basicAuthentication(username, password).build();
 	}
 
-	/*
-		Needed in order to be able to connect to the H2 DB server from within the IDE
-	 */
+	// Needed in order to be able to connect to the H2 DB server from within the IDE
 	@Bean(initMethod = "start", destroyMethod = "stop")
 	public Server h2Server() throws SQLException {
 		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
