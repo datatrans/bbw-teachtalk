@@ -12,15 +12,18 @@ import java.sql.SQLException;
 @SpringBootApplication
 public class BbwTechtalkApplication {
 
+	public static final String DATATRANS_USERNAME_PROPERTY = "datatransUsername";
+	public static final String DATATRANS_PASSWORD_PROPERTY = "datatransPassword";
+
 	public static void main(String[] args) {
 		SpringApplication.run(BbwTechtalkApplication.class, args);
 	}
 
 	@Bean
 	public RestTemplate rest(RestTemplateBuilder restTemplateBuilder) {
-		// For the sake of the demo, grabbing the credentials from system properties
-		String username = System.getProperty("datatransUsername");
-		String password = System.getProperty("datatransPassword");
+		// For the sake of the demo, grabbing the credentials from system or env properties
+		String username = System.getProperty(DATATRANS_USERNAME_PROPERTY, System.getenv().get(DATATRANS_USERNAME_PROPERTY));
+		String password = System.getProperty(DATATRANS_PASSWORD_PROPERTY, System.getenv().get(DATATRANS_PASSWORD_PROPERTY));
 
 		return restTemplateBuilder.basicAuthentication(username, password).build();
 	}
