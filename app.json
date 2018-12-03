@@ -1,0 +1,14 @@
+{
+  "name": "BBW Stickershop Demo",
+  "description": "A Stickershop to show a sample Datatrans integration",
+  "repository": "https://github.com/datatrans/bbw-techtalk",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Berufsbildungsschule_Winterthur_logo.svg",
+  "env": {
+    "datatransUsername":{
+      "description": "Your Datatrans merchantId"
+    },
+    "datatransPassword":{
+      "description": "The Datatrans Server-to-Server security password"
+    }
+  }
+}
