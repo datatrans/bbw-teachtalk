@@ -60,8 +60,8 @@ public class PurchaseService {
     public void updatePurchase(String refno, String transactionId, String paymentMethod) {
         Purchase purchase = purchaseRepository.findByRefno(refno);
 
-        // the user payed. set the state to PAYED
-        purchase.setState(PurchaseState.PAYED);
+        // the user payd. set the state to PAYD
+        purchase.setState(PurchaseState.PAYD);
         purchase.setTransactionId(transactionId);
         purchase.setPaymentMethod(paymentMethod);
         purchaseRepository.save(purchase);
