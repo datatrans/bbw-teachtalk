@@ -1,6 +1,8 @@
 # BBW Stickershop Demo
 A demo webshop to show a possible Datatrans integration.
 
+![Stickershop](shop.png)
+
 ##  Prerequisites
 1. Java 11 installed on your local dev system
 2. Maven installed on your local dev system
