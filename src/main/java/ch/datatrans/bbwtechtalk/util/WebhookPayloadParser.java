@@ -17,12 +17,9 @@ public class WebhookPayloadParser {
     public static boolean paymentWasSuccessful(String payload) throws Exception {
         DocumentBuilder newDocumentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document doc = newDocumentBuilder.parse(new ByteArrayInputStream(payload.getBytes()));
-
         NamedNodeMap transactionAttributes = doc.getElementsByTagName("transaction").item(0).getAttributes();
         Node status = transactionAttributes.getNamedItem("status");
-
         String responseCode = doc.getElementsByTagName("responseCode").item(0).getTextContent();
-
         return "success".equals(status.getNodeValue()) && "01".equals(responseCode);
     }
 

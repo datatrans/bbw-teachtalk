@@ -2,7 +2,6 @@ package ch.datatrans.bbwtechtalk.controller;
 
 import ch.datatrans.bbwtechtalk.domain.Article;
 import ch.datatrans.bbwtechtalk.service.ArticleService;
-import ch.datatrans.bbwtechtalk.service.PurchaseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,12 +15,9 @@ import java.util.List;
 public class ArticleController {
 
     private final ArticleService articleService;
-    private final PurchaseService purchaseService;
 
-    public ArticleController(ArticleService articleService,
-                             PurchaseService purchaseService) {
+    public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
-        this.purchaseService = purchaseService;
     }
 
     @GetMapping("/")

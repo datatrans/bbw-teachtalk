@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
 import java.sql.SQLException;
@@ -30,6 +31,7 @@ public class BbwTechtalkApplication {
 
 	// Needed in order to be able to connect to the H2 DB server from within the IDE
 	@Bean(initMethod = "start", destroyMethod = "stop")
+	@Profile("h2Server")
 	public Server h2Server() throws SQLException {
 		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
 	}
