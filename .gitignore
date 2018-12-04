@@ -20,8 +20,3 @@ misc
 spring-xd*
 custom-modules
 
-# rsa
-JAStatus*
-rsa_api.log
-
-notes.md
