@@ -3,9 +3,10 @@ package ch.datatrans.bbwtechtalk.controller;
 import ch.datatrans.bbwtechtalk.domain.Article;
 import ch.datatrans.bbwtechtalk.service.ArticleService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -26,9 +27,18 @@ public class ArticleController {
     }
 
     @GetMapping("/articles")
-    @ModelAttribute("articles")
-    public List<Article> getArticles() {
-        return articleService.getArticles();
+    //@ModelAttribute("articles")
+    public void getArticles(HttpServletRequest request, Model model) {
+        List<Article> articles = articleService.getArticles();
+        model.addAttribute("articles", articles);
+        model.addAttribute("webhookUrl", getUrl(request, "listener"));
+        model.addAttribute("successUrl", getUrl(request, "success"));
+        model.addAttribute("errorUrl", getUrl(request, "error"));
+        model.addAttribute("cancelUrl", getUrl(request, "cancel"));
+    }
+
+    private String getUrl(HttpServletRequest request, String type) {
+        return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/payment/" + type;
     }
 
 }

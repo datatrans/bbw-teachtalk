@@ -33,8 +33,16 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+    <small style="color: dimgray">
+        Configure the following URLs within the <a href="https://admin.sandbox.datatrans.com" target="_blank">Datatrans Webadmin Tool</a><br>
+            Webook (POST) URL: <span th:text="${webhookUrl}">webhookUrl</span> <-- This URL needs to be reachable from the Internet. Use a tool like <a hre="https://ngrok.com/">ngrok</a> if the app runs on localhost.<br/>
+            success URL: <span th:text="${successUrl}">successUrl</span><br/>
+            error URL: <span th:text="${errorUrl}">errorUrl</span><br/>
+            cancel: <span th:text="${cancelUrl}">cancelUrl</span><br/>
+    </small>
+
 </div>
 
 </body>
