@@ -38,7 +38,7 @@ public class ArticleController {
     }
 
     private String getUrl(HttpServletRequest request, String type) {
-        return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/payment/" + type;
+        return request.getScheme() +"://" + request.getServerName() + ("80".equals(String.valueOf(request.getServerPort())) || "443".equals(String.valueOf(request.getServerPort())) ? "" : ":" + request.getServerPort()) + "/payment/" + type;
     }
 
 }
