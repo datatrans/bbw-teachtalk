@@ -4,6 +4,7 @@ A demo webshop to show a possible Datatrans integration.
 ![Stickershop](shop.png)
 
 ##  Prerequisites
+
 1. Java 11 installed on your local dev system
 2. Maven installed on your local dev system
 3. An IDE of your choice (preferably IntelliJ)
@@ -28,3 +29,18 @@ like [ngrok](https://ngrok.com) to make this endpoint reachable from the interne
 
 ## Deployment
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/datatrans/bbw-techtalk/tree/master)
+
+## Docker
+
+This demo can be launched inside a Docker container. From the repository root run the following commands:
+
+```sh
+# build
+$ docker build -f docker/Dockerfile -t datatrans/bbw-stickershop:latest .
+# run
+$ docker run \
+    -p 8080:8080 \
+    -e 'datatransUsername=<merchantId>' \
+    -e 'datatransPassword=<password>' \
+    datatrans/bbw-stickershop:latest
+```
