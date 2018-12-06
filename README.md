@@ -17,8 +17,8 @@ like [ngrok](https://ngrok.com) to make this endpoint reachable from the interne
 ## Run the demo webshop
 1. Clone the repository
     ```zsh
-    $ git clone git@github.com:datatrans/bbw-techtalk.git
-    $ cd bbw-techtalk
+    $ git clone git@github.com:datatrans/bbw-teachtalk.git
+    $ cd bbw-teachtalk
     ```
 2. Package & run the application
     ```
@@ -28,7 +28,7 @@ like [ngrok](https://ngrok.com) to make this endpoint reachable from the interne
 3. Open http://localhost:8080 with your favourite browser
 
 ## Deployment
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/datatrans/bbw-techtalk/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/datatrans/bbw-teachtalk/tree/master)
 
 ## Docker
 
