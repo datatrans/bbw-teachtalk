@@ -1,8 +1,8 @@
-package ch.datatrans.bbwtechtalk.controller;
+package ch.datatrans.bbwteachtalk.controller;
 
-import ch.datatrans.bbwtechtalk.service.PurchaseService;
-import ch.datatrans.bbwtechtalk.util.Payment;
-import ch.datatrans.bbwtechtalk.util.WebhookPayloadParser;
+import ch.datatrans.bbwteachtalk.service.PurchaseService;
+import ch.datatrans.bbwteachtalk.util.Payment;
+import ch.datatrans.bbwteachtalk.util.WebhookPayloadParser;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

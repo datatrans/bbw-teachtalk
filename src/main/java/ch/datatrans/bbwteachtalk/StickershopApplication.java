@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk;
+package ch.datatrans.bbwteachtalk;
 
 import org.h2.tools.Server;
 import org.springframework.boot.SpringApplication;
@@ -11,13 +11,13 @@ import org.springframework.web.client.RestTemplate;
 import java.sql.SQLException;
 
 @SpringBootApplication
-public class BbwTechtalkApplication {
+public class StickershopApplication {
 
 	public static final String DATATRANS_USERNAME_PROPERTY = "datatransUsername";
 	public static final String DATATRANS_PASSWORD_PROPERTY = "datatransPassword";
 
 	public static void main(String[] args) {
-		SpringApplication.run(BbwTechtalkApplication.class, args);
+		SpringApplication.run(StickershopApplication.class, args);
 	}
 
 	@Bean

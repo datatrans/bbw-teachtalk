@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk.controller;
+package ch.datatrans.bbwteachtalk.controller;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk.domain;
+package ch.datatrans.bbwteachtalk.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

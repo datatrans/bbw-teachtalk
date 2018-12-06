@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk.util;
+package ch.datatrans.bbwteachtalk.util;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;

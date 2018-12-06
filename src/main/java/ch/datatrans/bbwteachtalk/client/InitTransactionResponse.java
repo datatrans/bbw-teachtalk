@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk.client;
+package ch.datatrans.bbwteachtalk.client;
 
 /**
  * @author dominik.mengelt@gmail.com

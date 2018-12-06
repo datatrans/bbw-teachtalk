@@ -1,12 +1,12 @@
-package ch.datatrans.bbwtechtalk.service;
+package ch.datatrans.bbwteachtalk.service;
 
-import ch.datatrans.bbwtechtalk.controller.Basket;
-import ch.datatrans.bbwtechtalk.client.DatatransClient;
-import ch.datatrans.bbwtechtalk.domain.Article;
-import ch.datatrans.bbwtechtalk.domain.ArticleRepository;
-import ch.datatrans.bbwtechtalk.domain.Purchase;
-import ch.datatrans.bbwtechtalk.domain.PurchaseRepository;
-import ch.datatrans.bbwtechtalk.domain.PurchaseState;
+import ch.datatrans.bbwteachtalk.controller.Basket;
+import ch.datatrans.bbwteachtalk.client.DatatransClient;
+import ch.datatrans.bbwteachtalk.domain.Article;
+import ch.datatrans.bbwteachtalk.domain.ArticleRepository;
+import ch.datatrans.bbwteachtalk.domain.Purchase;
+import ch.datatrans.bbwteachtalk.domain.PurchaseRepository;
+import ch.datatrans.bbwteachtalk.domain.PurchaseState;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 

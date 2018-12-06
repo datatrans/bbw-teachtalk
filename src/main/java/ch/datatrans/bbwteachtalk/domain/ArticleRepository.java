@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk.domain;
+package ch.datatrans.bbwteachtalk.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

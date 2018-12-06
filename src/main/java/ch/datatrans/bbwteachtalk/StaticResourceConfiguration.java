@@ -1,4 +1,4 @@
-package ch.datatrans.bbwtechtalk;
+package ch.datatrans.bbwteachtalk;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

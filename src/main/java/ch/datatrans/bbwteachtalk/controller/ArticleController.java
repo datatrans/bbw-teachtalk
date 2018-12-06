@@ -1,7 +1,7 @@
-package ch.datatrans.bbwtechtalk.controller;
+package ch.datatrans.bbwteachtalk.controller;
 
-import ch.datatrans.bbwtechtalk.domain.Article;
-import ch.datatrans.bbwtechtalk.service.ArticleService;
+import ch.datatrans.bbwteachtalk.domain.Article;
+import ch.datatrans.bbwteachtalk.service.ArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

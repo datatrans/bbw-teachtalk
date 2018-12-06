@@ -1,7 +1,7 @@
-package ch.datatrans.bbwtechtalk.service;
+package ch.datatrans.bbwteachtalk.service;
 
-import ch.datatrans.bbwtechtalk.domain.Article;
-import ch.datatrans.bbwtechtalk.domain.ArticleRepository;
+import ch.datatrans.bbwteachtalk.domain.Article;
+import ch.datatrans.bbwteachtalk.domain.ArticleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
