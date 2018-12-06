@@ -1,49 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>BBW Sticker Shop</title>
-
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-</head>
+<head lang="en" th:include="fragments/header :: header"></head>
 <body>
 
-<div class="container">
-    <div class="columns">
-        <div class="column col-12 col-mx-auto"><h3 style="padding-top: 1rem">BBW Sticker Shop</h3></div>
+    <div class="container">
+        <div class="columns">
+            <div class="column col-12 col-mx-auto"><h3 style="padding-top: 1rem">BBW Sticker Shop</h3></div>
 
-        <div class="column col-12" th:if="${#lists.isEmpty(articles)}">No articles so far!</div>
+            <div class="column col-12" th:if="${#lists.isEmpty(articles)}">No articles so far!</div>
 
-        <div class="column col-6 col-xs-12" th:each="article : ${articles}" th:unless="${#lists.isEmpty(articles)}">
-            <div class="card" style="margin: 1rem">
-                <div class="card-header">
-                    <div class="card-title h5"><span th:text="${article.name}"></span></div>
-                    <div class="card-subtitle text-gray">Article number: <span class="user" th:text="${article.id}"></span></div>
-                </div>
-                <div class="card-image" style="margin-left: 1rem;"><img class="img-responsive" th:src="${'/img/' + article.logo}" src="../static/img/bbw_circle.jpg" width="200px"></div>
-                <div class="card-body"><span class="user" th:text="${article.description}"></span></div>
-                <div class="card-footer">
-                    <form action="/payment" method="post">
-                        <input name="articleId" type="hidden" th:value="${article.id}"/>
-                        <input name="quantity" type="hidden" value="1" />
-                        <button class="btn btn-primary" th:text="${'Buy for CHF ' + article.price}"></button>
-                    </form>
+            <div class="column col-6 col-xs-12" th:each="article : ${articles}" th:unless="${#lists.isEmpty(articles)}">
+                <div class="card" style="margin: 1rem">
+                    <div class="card-header">
+                        <div class="card-title h5"><span th:text="${article.name}"></span></div>
+                        <div class="card-subtitle text-gray">Article number: <span class="user" th:text="${article.id}"></span></div>
+                    </div>
+                    <div class="card-image" style="margin-left: 1rem;"><img class="img-responsive" th:src="${'/img/' + article.logo}" src="../static/img/bbw_circle.jpg" width="200px"></div>
+                    <div class="card-body"><span class="user" th:text="${article.description}"></span></div>
+                    <div class="card-footer">
+                        <form action="/payment" method="post">
+                            <input name="articleId" type="hidden" th:value="${article.id}"/>
+                            <input name="quantity" type="hidden" value="1" />
+                            <button class="btn btn-primary" th:text="${'Buy for CHF ' + article.price}"></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <small style="color: dimgray">
+            Configure the following URLs within the <a href="https://admin.sandbox.datatrans.com" target="_blank">Datatrans Webadmin Tool</a><br>
+                Webook (POST) URL: <span th:text="${webhookUrl}">webhookUrl</span> <-- This URL needs to be reachable from the Internet. Use a tool like <a hre="https://ngrok.com/">ngrok</a> if the app runs on localhost.<br/>
+                success URL: <span th:text="${successUrl}">successUrl</span><br/>
+                error URL: <span th:text="${errorUrl}">errorUrl</span><br/>
+                cancel: <span th:text="${cancelUrl}">cancelUrl</span><br/>
+        </small>
+
     </div>
-
-    <small style="color: dimgray">
-        Configure the following URLs within the <a href="https://admin.sandbox.datatrans.com" target="_blank">Datatrans Webadmin Tool</a><br>
-            Webook (POST) URL: <span th:text="${webhookUrl}">webhookUrl</span> <-- This URL needs to be reachable from the Internet. Use a tool like <a hre="https://ngrok.com/">ngrok</a> if the app runs on localhost.<br/>
-            success URL: <span th:text="${successUrl}">successUrl</span><br/>
-            error URL: <span th:text="${errorUrl}">errorUrl</span><br/>
-            cancel: <span th:text="${cancelUrl}">cancelUrl</span><br/>
-    </small>
-
-</div>
 
 </body>
 </html>

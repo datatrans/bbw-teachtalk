@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>BBW Sticker Shop</title>
-
-    <link href="../static/css/stickershop.css"
-          th:href="@{/css/stickershop.css}"
-          rel="stylesheet" media="screen"/>
-
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-</head>
+<head lang="en" th:include="fragments/header :: header"></head>
 <body>
-
-<div class="empty">
-    <div class="empty-icon">
-        <i class="icon icon-stop"></i>
+    <div class="empty">
+        <div class="empty-icon">
+            <i class="icon icon-stop"></i>
+        </div>
+        <p class="empty-title h5">Oh no! Something went wrong.</p>
+        <p class="empty-subtitle">If you have questions, use <span th:text="${transactionId}">transactionId</span> as your reference or try again.</p>
+        <div class="empty-action">
+            <a href="/articles" class="btn btn-error">Take me back.</a>
+        </div>
     </div>
-    <p class="empty-title h5">Oh no! Something went wrong.</p>
-    <p class="empty-subtitle">If you have questions, use <span th:text="${transactionId}">transactionId</span> as your reference or try again.</p>
-    <div class="empty-action">
-        <a href="/articles" class="btn btn-error">Take me back.</a>
-    </div>
-</div>
-
 </body>
 </html>

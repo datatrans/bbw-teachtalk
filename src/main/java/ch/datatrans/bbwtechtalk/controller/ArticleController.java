@@ -27,7 +27,6 @@ public class ArticleController {
     }
 
     @GetMapping("/articles")
-    //@ModelAttribute("articles")
     public void getArticles(HttpServletRequest request, Model model) {
         List<Article> articles = articleService.getArticles();
         model.addAttribute("articles", articles);
