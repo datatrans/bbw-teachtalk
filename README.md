@@ -17,7 +17,7 @@ like [ngrok](https://ngrok.com) to make this endpoint reachable from the interne
 ## Run the demo webshop
 1. Clone the repository
     ```zsh
-    $ git clone git@github.com:datatrans/bbw-teachtalk.git
+    $ git clone https://github.com/datatrans/bbw-teachtalk
     $ cd bbw-teachtalk
     ```
 2. Package & run the application
