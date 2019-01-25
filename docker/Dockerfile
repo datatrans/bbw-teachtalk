@@ -1,16 +1,16 @@
-FROM maven:3.6.0-jdk-11
+FROM maven:3.6.0-jdk-11 as build-env
 
 WORKDIR /app
 
-ADD src ./src
-ADD pom.xml ./
+COPY src ./src
+COPY pom.xml ./
 
 RUN mvn package
 
 FROM openjdk:11
 
-COPY --from=0 /app/target/bbw-stickershop.jar bbw-stickershop.jar
-ADD docker/run.sh ./
+COPY --from=build-env /app/target/bbw-stickershop.jar bbw-stickershop.jar
+COPY docker/run.sh ./
 
 ENV datatransUsername ''
 ENV datatransPassword ''
