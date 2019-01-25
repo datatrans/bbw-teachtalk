@@ -42,28 +42,33 @@ public class PurchaseService {
         long priceCurrencySmallestUnit = price.scaleByPowerOfTen(price.scale()).longValue() * basket.getQuantity();
 
         // initialize transaction with Datatrans
-        String paymentId = datatransClient.initTransaction(refno, priceCurrencySmallestUnit, "CHF");
+        String transactionId = datatransClient.initTransaction(refno, priceCurrencySmallestUnit, "CHF");
 
         // crate a new purchase in DB
         Purchase purchase = new Purchase();
         purchase.setArticles(List.of(article));
         purchase.setAmount(price.multiply(new BigDecimal(basket.getQuantity())));
         purchase.setRefno(refno);
+        purchase.setTransactionId(transactionId);
 
         // set the state to INITIALIZED
         purchase.setState(PurchaseState.INITIALIZED);
         purchaseRepository.save(purchase);
 
-        return paymentId;
+        return transactionId;
     }
 
-    public void updatePurchase(String refno, String transactionId, String paymentMethod) {
+    public void updatePurchase(String refno, String paymentMethod) {
         Purchase purchase = purchaseRepository.findByRefno(refno);
 
         // the user PAID. set the state to PAID
         purchase.setState(PurchaseState.PAID);
-        purchase.setTransactionId(transactionId);
         purchase.setPaymentMethod(paymentMethod);
         purchaseRepository.save(purchase);
+    }
+
+    public boolean hasPaid(String transactionId) {
+        Purchase purchase = purchaseRepository.findByTransactionId(transactionId);
+        return purchase!=null && purchase.getState().equals(PurchaseState.PAID);
     }
 }

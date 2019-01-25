@@ -11,4 +11,6 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
     Purchase findByRefno(String refno);
 
+    Purchase findByTransactionId(String transactionId);
+
 }

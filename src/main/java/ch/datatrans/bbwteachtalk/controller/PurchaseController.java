@@ -1,15 +1,14 @@
 package ch.datatrans.bbwteachtalk.controller;
 
 import ch.datatrans.bbwteachtalk.service.PurchaseService;
-import ch.datatrans.bbwteachtalk.util.Payment;
-import ch.datatrans.bbwteachtalk.util.WebhookPayloadParser;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -36,7 +35,13 @@ public class PurchaseController {
     @GetMapping("/success")
     public String success(@RequestParam("datatransTrxId") String transactionId, Model model) {
         model.addAttribute("transactionId", transactionId);
-        return "success";
+
+        // to be on the safe side, lets check here if the user really has paid.
+        if (purchaseService.hasPaid(transactionId)) {
+            return "success";
+        }
+
+        return "error";
     }
 
     @GetMapping("/cancel")
@@ -52,21 +57,18 @@ public class PurchaseController {
     }
 
     @PostMapping("/listener")
-    public void paymentSuccessfulListener(HttpEntity<String> httpEntity) {
+    @ResponseBody
+    public void paymentSuccessfulListener(@RequestBody WebhookResponse webhookResponse) {
 
-        try {
-            String payload = httpEntity.getBody();
-
-            if(WebhookPayloadParser.paymentWasSuccessful(payload)) {
-                Payment paymentDetails = WebhookPayloadParser.getPaymentDetails(payload);
-                purchaseService.updatePurchase(paymentDetails.getRefno(),
-                        paymentDetails.getTransactionId(),
-                        paymentDetails.getPaymentMethod());
-
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to parse Webhook payload. Aborting.");
+        // only checking if status=settled here.
+        // more detailed status information would be available in the 'detail' object
+        // of course in real world scenarios much more is needed to do a "proper" status validation
+        if("settled".equals(webhookResponse.getStatus())) {
+            purchaseService.updatePurchase(webhookResponse.getRefno(),
+                    webhookResponse.getPaymentMethod());
         }
+
+        // status was not "settled". implement other business logic to handle this case
 
     }
 

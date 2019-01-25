@@ -5,15 +5,15 @@ package ch.datatrans.bbwteachtalk.client;
  */
 public final class InitTransactionResponse {
 
-    private String paymentId;
+    private String transactionId;
 
     public InitTransactionResponse() {}
 
-    public String getPaymentId() {
-        return paymentId;
+    public String getTransactionId() {
+        return transactionId;
     }
 
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 }

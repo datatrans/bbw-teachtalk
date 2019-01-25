@@ -40,7 +40,7 @@ public class DatatransClient {
                         InitTransactionResponse.class,
                         Collections.emptyMap());
 
-        return initTransactionResponse.getPaymentId();
+        return initTransactionResponse.getTransactionId();
 
     }
 
