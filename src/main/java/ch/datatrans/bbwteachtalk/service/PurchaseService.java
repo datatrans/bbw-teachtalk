@@ -11,6 +11,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public class PurchaseService {
 
         // crate a new purchase in DB
         Purchase purchase = new Purchase();
-        purchase.setArticles(List.of(article));
+        purchase.setArticles(Collections.singletonList(article));
         purchase.setAmount(price.multiply(new BigDecimal(basket.getQuantity())));
         purchase.setRefno(refno);
         purchase.setTransactionId(transactionId);
