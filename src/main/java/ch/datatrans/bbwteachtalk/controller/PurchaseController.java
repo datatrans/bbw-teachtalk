@@ -4,9 +4,11 @@ import ch.datatrans.bbwteachtalk.service.PurchaseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,7 +34,8 @@ public class PurchaseController {
         return new ModelAndView("redirect:https://pay.sandbox.datatrans.com/v1/start/" + paymentId);
     }
 
-    @GetMapping("/success")
+    @RequestMapping(value = "/success", method = { RequestMethod.GET,
+            RequestMethod.POST })
     public String success(@RequestParam("datatransTrxId") String transactionId, Model model) {
         model.addAttribute("transactionId", transactionId);
 
@@ -41,16 +44,20 @@ public class PurchaseController {
             return "success";
         }
 
+        // At Datatrans it still could be that the transaction is now authorized.
+        // Another Status API call would be needed here before actually redirecting to the /error page
         return "error";
     }
 
-    @GetMapping("/cancel")
+    @RequestMapping(value = "/cancel", method = { RequestMethod.GET,
+            RequestMethod.POST })
     public String cancel(@RequestParam("datatransTrxId") String transactionId, Model model) {
         model.addAttribute("transactionId", transactionId);
         return "cancel";
     }
 
-    @GetMapping("/error")
+    @RequestMapping(value = "/error", method = { RequestMethod.GET,
+            RequestMethod.POST })
     public String error(@RequestParam("datatransTrxId") String transactionId, Model model) {
         model.addAttribute("transactionId", transactionId);
         return "error";
